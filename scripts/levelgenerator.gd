@@ -26,7 +26,7 @@ func _ready() -> void:
 	start_platform_y = viewport_size.y - (y_distance_between_platfomr * 2 )
 	generate_level(start_platform_y)
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if player:
 		var py = player.global_position.y
 		var end_level_pos = start_platform_y - (platform_generated_count * y_distance_between_platfomr)
@@ -53,7 +53,7 @@ func generate_level(start_y:float):
 	print(platform_generated_count)
 
 func create_platform(location:Vector2):
-	var platform = platform_scnce.instantiate()
-	platform.global_position = location
-	platfomr_parent.add_child(platform)
-	return platform
+	var platform_var = platform_scnce.instantiate()
+	platform_var.global_position = location
+	platfomr_parent.add_child(platform_var)
+	return platform_var

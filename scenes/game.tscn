@@ -1,14 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://cygl4tsur1mp8"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_icoox"]
-[ext_resource type="PackedScene" uid="uid://vdv1s82aqqpx" path="res://scenes/player.tscn" id="2_2j5b2"]
 [ext_resource type="PackedScene" uid="uid://dvddq2qwh2k10" path="res://scenes/levelgenerator.tscn" id="3_cq6h4"]
+[ext_resource type="Texture2D" uid="uid://rpbyjdymxakr" path="res://assets/textures/bg/Ground.png" id="3_v8jj6"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_icoox")
 
-[node name="player" parent="." instance=ExtResource("2_2j5b2")]
-z_index = -100
-position = Vector2(254, 546)
-
 [node name="levelgenerator" parent="." instance=ExtResource("3_cq6h4")]
+
+[node name="groundsprite" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(252, 898)
+scale = Vector2(1, 0.890984)
+texture = ExtResource("3_v8jj6")

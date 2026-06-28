@@ -13,7 +13,7 @@ var jump_velocity := -800
 func _ready() -> void:
 	viewport_size = get_viewport_rect().size
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if velocity.y > 0:
 		if animator.current_animation != "fall":
 			animator.play("fall")
