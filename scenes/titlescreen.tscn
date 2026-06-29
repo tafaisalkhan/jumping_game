@@ -1,0 +1,102 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvsldsyjpxfxn"]
+
+[ext_resource type="Texture2D" uid="uid://dfofrhyordfm4" path="res://assets/textures/ui/BigLogo.png" id="1_wuuph"]
+[ext_resource type="PackedScene" uid="uid://bhcpt74r4hw3i" path="res://scenes/screenbutton.tscn" id="2_vbpl8"]
+[ext_resource type="Texture2D" uid="uid://cg4fcwihyiy6i" path="res://assets/textures/ui/PlayBtn.png" id="3_0kla1"]
+
+[sub_resource type="Animation" id="Animation_v8nw1"]
+resource_name = "animation_player"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/play:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.166667, 1.73333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-91, 102), Vector2(-92, 115)]
+}
+
+[sub_resource type="Animation" id="Animation_ab27a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/play:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-91, 102)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_phygr"]
+_data = {
+"RESET": SubResource("Animation_ab27a"),
+"animation_player": SubResource("Animation_v8nw1")
+}
+
+[node name="titlescreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="logo" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -221.0
+offset_top = -235.0
+offset_right = 231.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_wuuph")
+expand_mode = 1
+
+[node name="play" parent="Control" instance=ExtResource("2_vbpl8")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -111.0
+offset_top = 82.0
+offset_right = 132.0
+offset_bottom = 322.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_0kla1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_phygr")
+}
+autoplay = "animation_player"

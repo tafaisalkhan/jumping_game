@@ -23,7 +23,7 @@ var viewport_size:Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	viewport_size = get_viewport_rect().size
-	
+	print("game")
 	var player_starting_y = 134
 	player_spwan_pos.x = viewport_size.x /2.0
 	player_spwan_pos.y = viewport_size.y - player_starting_y 

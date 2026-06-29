@@ -8,11 +8,18 @@ var max_gravity := 1000
 var jump_velocity := -800
 @onready var animator = $AnimationPlayer
 
+var accelero_speed = 134.0
+
+var use_accelerometer = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	viewport_size = get_viewport_rect().size
 
+	var os_name = OS.get_name()
+	if os_name == "Android" || os_name == "iOS":
+		use_accelerometer = true
 func _process(_delta: float) -> void:
 	if velocity.y > 0:
 		if animator.current_animation != "fall":
@@ -25,11 +32,15 @@ func _physics_process(_delta: float) -> void:
 	if(velocity.y < max_gravity):
 		velocity.y += gravity
 	
-	var direction = Input.get_axis("move_left","move_right")
-	if direction:
-		velocity.x = direction * speed
+	if use_accelerometer:
+		var mobile_input = Input.get_accelerometer()
+		velocity.x = mobile_input.x * accelero_speed
 	else:
-		velocity.x = move_toward(velocity.x,0,speed)
+		var direction = Input.get_axis("move_left","move_right")
+		if direction:
+			velocity.x = direction * speed
+		else:
+			velocity.x = move_toward(velocity.x,0,speed)
 		
 	move_and_slide()
 	
