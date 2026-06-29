@@ -48,7 +48,12 @@ func _on_toggle_console_pressed() -> void:
 	
 func change_screen(new_screen):
 	if current_screen != null:
-		current_screen.disappear()
+		var disappear_tween = current_screen.disappear()
+		await (disappear_tween.finished)
+		current_screen.visible = false
 	current_screen = new_screen
 	if current_screen != null:
-		current_screen.appear()
+		var current_tween = current_screen.appear()
+		await (current_tween.finished)
+		get_tree().call_group("buttons","set_disabled", false)
+		

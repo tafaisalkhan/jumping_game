@@ -5,6 +5,21 @@
 [ext_resource type="PackedScene" uid="uid://bhcpt74r4hw3i" path="res://scenes/screenbutton.tscn" id="2_vbpl8"]
 [ext_resource type="Texture2D" uid="uid://cg4fcwihyiy6i" path="res://assets/textures/ui/PlayBtn.png" id="3_0kla1"]
 
+[sub_resource type="Animation" id="Animation_ab27a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/play:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-91, 102)]
+}
+
 [sub_resource type="Animation" id="Animation_v8nw1"]
 resource_name = "animation_player"
 length = 2.0
@@ -20,21 +35,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-91, 102), Vector2(-92, 115)]
-}
-
-[sub_resource type="Animation" id="Animation_ab27a"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control/play:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-91, 102)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_phygr"]
