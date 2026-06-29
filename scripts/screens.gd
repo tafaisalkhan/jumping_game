@@ -2,12 +2,17 @@ extends CanvasLayer
 
 @onready var console = $debug/consoleLogs
 
+@onready var title_screen = $titlescreen
+@onready var pause_screen = $pausescreen
+@onready var gameover_screen = $gameoverscreen
+
+var current_screen = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("sdfsdf")
 	console.visible = false # Replace with function body.
-	print("in ready")
 	register_button()
+	change_screen(title_screen)
 
 func register_button():
 	print ("register buuton")
@@ -21,10 +26,9 @@ func register_button():
 				button.clicked.connect(_on_buuton_pressed)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_buuton_pressed(button):
-	print(button.name)
 	match button.name:
 		"play":
-			print("play button")
+			change_screen(pause_screen)
 		"pauseBackBtn":
 			print("pause back button")
 		"pauseRetryBtn":
@@ -40,5 +44,11 @@ func _on_buuton_pressed(button):
 	MyUtility.add_log_msg(button.name)
 
 func _on_toggle_console_pressed() -> void:
-	print("sdfds")
 	console.visible = !console.visible # Replace with function body.
+	
+func change_screen(new_screen):
+	if current_screen != null:
+		current_screen.disappear()
+	current_screen = new_screen
+	if current_screen != null:
+		current_screen.appear()
