@@ -1,7 +1,11 @@
 extends Control
 
+signal pause_signal
+
 @onready var topbar = $topbar
 @onready var topbar_bg = $topbarBG
+
+@onready var hud_score = $topbar/scoreLabel
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var os_name = OS.get_name()
@@ -20,4 +24,8 @@ func _ready() -> void:
 
 
 func _on_pause_btn_pressed() -> void:
-	pass # Replace with function body.
+	pause_signal.emit()
+	#get_tree().paused = !get_tree().paused # Replace with function body.
+
+func set_hud_score(score:int):
+	hud_score.text = str(score)

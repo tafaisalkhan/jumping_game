@@ -8,7 +8,7 @@ var start_platform_y
 var level_size = 15
 var platfomr_with = 134
 var viewport_size
-var platform_generated_count
+var platform_generated_count = 0
 
 var player : Player = null
 
@@ -20,11 +20,15 @@ func _ready() -> void:
 	viewport_size = get_viewport_rect().size
 
 	# generate ground 
-	generate_ground()
+	#generate_ground()
 	#generate level
 	platform_generated_count = 0
 	start_platform_y = viewport_size.y - (y_distance_between_platfomr * 2 )
+	#generate_level(start_platform_y)
+	
+func start_generation():
 	generate_level(start_platform_y)
+	generate_ground()
 	
 func _process(_delta: float) -> void:
 	if player:
@@ -57,3 +61,8 @@ func create_platform(location:Vector2):
 	platform_var.global_position = location
 	platfomr_parent.add_child(platform_var)
 	return platform_var
+	
+func rest_level():
+	platform_generated_count = 0
+	for platform in platfomr_parent.get_children():
+		platform.queue_free()

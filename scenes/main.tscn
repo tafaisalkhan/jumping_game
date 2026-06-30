@@ -9,4 +9,4 @@ script = ExtResource("1_kmt8a")
 
 [node name="game" parent="." instance=ExtResource("2_ifsww")]
 
-[node name="CanvasLayer" parent="." instance=ExtResource("3_wdiga")]
+[node name="screens" parent="." instance=ExtResource("3_wdiga")]

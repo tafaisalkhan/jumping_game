@@ -7,12 +7,15 @@ var gravity := 19
 var max_gravity := 1000
 var jump_velocity := -800
 @onready var animator = $AnimationPlayer
+@onready var cshape = $CollisionShape2D
+
+signal died
 
 var accelero_speed = 134.0
 
 var use_accelerometer = false
 
-
+var dead = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	viewport_size = get_viewport_rect().size
@@ -32,15 +35,16 @@ func _physics_process(_delta: float) -> void:
 	if(velocity.y < max_gravity):
 		velocity.y += gravity
 	
-	if use_accelerometer:
-		var mobile_input = Input.get_accelerometer()
-		velocity.x = mobile_input.x * accelero_speed
-	else:
-		var direction = Input.get_axis("move_left","move_right")
-		if direction:
-			velocity.x = direction * speed
+	if !dead:
+		if use_accelerometer:
+			var mobile_input = Input.get_accelerometer()
+			velocity.x = mobile_input.x * accelero_speed
 		else:
-			velocity.x = move_toward(velocity.x,0,speed)
+			var direction = Input.get_axis("move_left","move_right")
+			if direction:
+				velocity.x = direction * speed
+			else:
+				velocity.x = move_toward(velocity.x,0,speed)
 		
 	move_and_slide()
 	
@@ -54,3 +58,13 @@ func _physics_process(_delta: float) -> void:
 		global_position.x = viewport_size.x
 func jump():
 	velocity.y = jump_velocity
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	die() # Replace with function body.
+
+func die():
+	if !dead:
+		dead = true
+		died.emit()
+		cshape.set_deferred("disabled",true)

@@ -9,6 +9,8 @@ var player :Player = null
 var view_port_size = null;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if player:
+		global_position.y = player.global_position.y
 	view_port_size =  get_viewport_rect().size
 	global_position.x = view_port_size.x / 2
 	limit_bottom = view_port_size.y
@@ -25,7 +27,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if player:
+	if player != null:
 		var limit_distance = 500
 		if limit_bottom > player.global_position.y + limit_distance:
 			limit_bottom = int(player.global_position.y + limit_distance)
@@ -41,5 +43,5 @@ func setup_camera(_player: Player):
 		player = _player
 		
 func _physics_process(_delta: float) -> void:
-	if player:
+	if player != null:
 		global_position.y = player.global_position.y
