@@ -28,6 +28,7 @@ func register_button():
 				button.clicked.connect(_on_buuton_pressed)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_buuton_pressed(button):
+	SoundFx.play("click")
 	match button.name:
 		"play":
 			change_screen(null)

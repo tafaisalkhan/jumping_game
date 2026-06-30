@@ -57,6 +57,7 @@ func _physics_process(_delta: float) -> void:
 		print("left")
 		global_position.x = viewport_size.x
 func jump():
+	SoundFx.play("jump")
 	velocity.y = jump_velocity
 
 
@@ -68,3 +69,4 @@ func die():
 		dead = true
 		died.emit()
 		cshape.set_deferred("disabled",true)
+		SoundFx.play("fall")
