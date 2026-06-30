@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cygl4tsur1mp8"]
+[gd_scene load_steps=8 format=3 uid="uid://cygl4tsur1mp8"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_icoox"]
 [ext_resource type="PackedScene" uid="uid://dvddq2qwh2k10" path="res://scenes/levelgenerator.tscn" id="3_cq6h4"]
@@ -6,11 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://bu1885c0q0ge4" path="res://assets/textures/bg/Layer1.png" id="4_yg3fc"]
 [ext_resource type="Texture2D" uid="uid://betuqcj74cn5" path="res://assets/textures/bg/Layer2.png" id="5_wujyf"]
 [ext_resource type="Texture2D" uid="uid://blx544no4dxj1" path="res://assets/textures/bg/Layer3.png" id="6_gqkw2"]
+[ext_resource type="PackedScene" uid="uid://cll6xsksgtr1y" path="res://scenes/hud.tscn" id="7_2xw6p"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_icoox")
 
 [node name="levelgenerator" parent="." instance=ExtResource("3_cq6h4")]
+
+[node name="UIlayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="HUD" parent="UIlayer" instance=ExtResource("7_2xw6p")]
 
 [node name="groundsprite" type="Sprite2D" parent="."]
 z_index = -10
